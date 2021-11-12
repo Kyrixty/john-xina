@@ -1,8 +1,9 @@
 import os
 
 # Environment paths
-APP_PATH = f"{os.path.dirname(__file__)}"
-JSON_PATH = f"{os.path.dirname(__file__)}/../json"
+APP_PATH = f"{os.path.dirname(__file__)}"+"/"
+ENV_PATH = APP_PATH+"../.env"
+JSON_PATH = f"{APP_PATH}../accounts.json"
 
 # Text colours
 RED = "\x1b[31m"
