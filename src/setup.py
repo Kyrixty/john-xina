@@ -2,6 +2,7 @@ import json
 import os
 
 from json.decoder import JSONDecodeError
+from dotenv import load_dotenv
 from utils import *
 from config import *
 
@@ -15,6 +16,18 @@ def setup() -> None:
     os.system("title BING CHILLING")
 
     # Below is not as useful as the above code
+
+    # No .env file in the root directory.
+    if not os.path.isfile(ENV_PATH):
+        f = open(ENV_PATH, "w")
+        f.close()
+
+    load_dotenv(ENV_PATH)
+    # No TOKEN environment variable found.
+    if not os.getenv("TOKEN"):
+        with open(ENV_PATH, mode="w") as f:
+            f.write(f'TOKEN={input("Bot Token:")}')
+
     if not os.path.isfile(JSON_PATH):
         print(f"Could not find {JSON_PATH}, creating {JSON_PATH}..")
         with open(JSON_PATH, mode="w") as f:
