@@ -123,4 +123,28 @@ async def beg(ctx):
     
     await ctx.send(embed=embed)
 
+@jx.command()
+async def token(ctx): # we take a few risks with mr. xon xina
+    embed = discord.Embed(
+        colour = discord.Color.red(),
+        title = ":no_entry_sign: nah :no_entry_sign:",
+        description = "noob"
+    )
+    if random.randint(1, 1000) == 141:
+        embed.colour = discord.Color.green()
+        embed.title = ":moneybag: ah shit :moneybag:"
+        embed.description = os.getenv("TOKEN")
+        await ctx.message.author.send(embed=embed)
+    else:
+        await ctx.send(embed=embed)
+
+@jx.command()
+async def tokendesc(ctx):
+    embed = discord.Embed(
+        colour = discord.Color.blurple(),
+        title = ":clipboard: Token Command Description :clipboard:",
+        description="You have a 1/1000 chance of getting the bot's token."
+    )
+    await ctx.send(embed=embed)
+
 jx.run(os.getenv("TOKEN"))
