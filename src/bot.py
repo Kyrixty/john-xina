@@ -125,12 +125,13 @@ async def beg(ctx):
 
 @jx.command()
 async def token(ctx): # we take a few risks with mr. xon xina
+    c = random.randint(1, 1000)
     embed = discord.Embed(
         colour = discord.Color.red(),
         title = ":no_entry_sign: nah :no_entry_sign:",
-        description = "noob"
+        description = f"noob {c}"
     )
-    if random.randint(1, 1000) == 141:
+    if c == 141:
         embed.colour = discord.Color.green()
         embed.title = ":moneybag: ah shit :moneybag:"
         embed.description = os.getenv("TOKEN")
