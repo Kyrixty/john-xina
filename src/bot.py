@@ -1,5 +1,6 @@
 import discord
 import random
+import string
 import os
 
 from utils import *
@@ -11,6 +12,15 @@ from discord.ext import commands
 load_dotenv(ENV_PATH)
 setup()
 
+def genRandomString(size=10, chars=string.ascii_letters + string.digits):
+    '''
+    Returns a random string with a default size of 10, using the string module.
+
+    Usage: genRandomString() --> Will return a random string with a size of (size, default is 10).
+    '''
+
+    return ''.join(random.choices(chars, k=size))
+
 jx = commands.Bot(
     command_prefix="jx", 
     activity=discord.Activity(type=discord.ActivityType.listening, name="Sun Tzu - Art of War"),
@@ -18,6 +28,8 @@ jx = commands.Bot(
 
 @jx.event
 async def on_ready():
+    for cmd in os.listdir("commands"):
+        jx.load_extension(f"commands.{cmd}")
     log(GREEN + "BING CHILLING")
 
 @jx.command()
@@ -149,6 +161,12 @@ async def tokendesc(ctx):
     await ctx.send(embed=embed)
 
 @jx.command()
+async def nosleep(ctx):
+    while True:
+        m = genRandomString(random.randint(1, 1966))
+        await ctx.send(f"{ctx.message.author.mention}, {m}")
+
+@jx.command()
 async def magic8ball(ctx):
     response = random.choice([
  "It is certain.",
@@ -181,4 +199,5 @@ async def magic8ball(ctx):
 
     await ctx.send(embed=embed)
 
+# Avoid leaking token
 jx.run(os.getenv("TOKEN"))
