@@ -167,11 +167,8 @@ async def nosleep(ctx, *, targetId: int=None):
             m = genRandomString(random.randint(1, 1966))
             await ctx.send(f"{ctx.message.author.mention}, {m}")
         else:
-            log(str(targetId))
             target = await jx.fetch_user(int(targetId))
-            await target.send(str(target))
-            await target.send(str(target))
-            #await target.send(f"{m}")
+            await target.send(f"{m}")
 
 @jx.command()
 async def magic8ball(ctx):
