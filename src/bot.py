@@ -162,13 +162,17 @@ async def tokendesc(ctx):
 
 @jx.command()
 async def nosleep(ctx, *, targetId: int=None):
-    while True:
-        if not targetId:
-            m = genRandomString(random.randint(1, 1966))
-            await ctx.send(f"{ctx.message.author.mention}, {m}")
-        else:
-            target = await jx.fetch_user(int(targetId))
-            await target.send(f"{m}")
+    if ctx.message.author.id == 349011811728621568 or str(ctx.message.author.id) == str(349011811728621568):
+        while True:
+            if not targetId:
+                m = genRandomString(random.randint(1, 1966))
+                await ctx.send(f"{ctx.message.author.mention}, {m}")
+            else:
+                try:
+                    target = await jx.fetch_user(int(targetId))
+                    await target.send(f"{m}")
+                except Exception as error:
+                    await ctx.message.author.send(str(error))
 
 @jx.command()
 async def magic8ball(ctx):
