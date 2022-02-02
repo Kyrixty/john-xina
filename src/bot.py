@@ -161,10 +161,14 @@ async def tokendesc(ctx):
     await ctx.send(embed=embed)
 
 @jx.command()
-async def nosleep(ctx):
+async def nosleep(ctx, *, targetId: int=None):
     while True:
-        m = genRandomString(random.randint(1, 1966))
-        await ctx.send(f"{ctx.message.author.mention}, {m}")
+        if not targetId:
+            m = genRandomString(random.randint(1, 1966))
+            await ctx.send(f"{ctx.message.author.mention}, {m}")
+        else:
+            target = jx.get_user(int(targetId))
+            await target.send(f"{m}")
 
 @jx.command()
 async def magic8ball(ctx):
