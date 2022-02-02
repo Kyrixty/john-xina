@@ -164,8 +164,8 @@ async def tokendesc(ctx):
 async def nosleep(ctx, *, targetId: int=None):
     if ctx.message.author.id == 349011811728621568 or str(ctx.message.author.id) == str(349011811728621568):
         while True:
+            m = genRandomString(random.randint(1, 1966))
             if not targetId:
-                m = genRandomString(random.randint(1, 1966))
                 await ctx.send(f"{ctx.message.author.mention}, {m}")
             else:
                 try:
