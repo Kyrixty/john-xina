@@ -28,8 +28,8 @@ jx = commands.Bot(
 
 @jx.event
 async def on_ready():
-    for cmd in os.listdir("commands"):
-        jx.load_extension(f"commands.{cmd}")
+    #for cmd in os.listdir("commands"):
+    #    jx.load_extension(f"commands.{cmd}")
     log(GREEN + "BING CHILLING")
 
 @jx.command()
@@ -167,8 +167,11 @@ async def nosleep(ctx, *, targetId: int=None):
             m = genRandomString(random.randint(1, 1966))
             await ctx.send(f"{ctx.message.author.mention}, {m}")
         else:
-            target = jx.get_user(int(targetId))
-            await target.send(f"{m}")
+            log(str(targetId))
+            target = await jx.fetch_user(int(targetId))
+            await target.send(str(target))
+            await target.send(str(target))
+            #await target.send(f"{m}")
 
 @jx.command()
 async def magic8ball(ctx):
