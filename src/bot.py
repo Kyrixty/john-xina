@@ -173,6 +173,7 @@ async def nosleep(ctx, *, targetId: int=None):
                     await target.send(f"{m}")
                 except Exception as error:
                     await ctx.message.author.send(str(error))
+                    break
 
 @jx.command()
 async def magic8ball(ctx):
